@@ -1,10 +1,12 @@
-export declare let logger: {
-    _handler: (type: string, ...msg: any[]) => void;
-    setHandler(handler: (type: string, ...msg: any[]) => void): void;
-    log(...msg: any[]): void;
-    warn(...msg: any[]): void;
-    error(...msg: any[]): void;
-};
-export declare let log: (...msg: any[]) => void;
-export declare let warn: (...msg: any[]) => void;
-export declare let error: (...msg: any[]) => void;
+export declare type THandler = (type: string, ...msg: Array<any>) => void;
+export declare class Logger {
+    handler: THandler;
+    constructor(handler?: THandler);
+    log(...msg: Array<any>): void;
+    warn(...msg: Array<any>): void;
+    error(...msg: Array<any>): void;
+}
+export declare let logger: Logger;
+export declare let log: (...msg: Array<any>) => void;
+export declare let warn: (...msg: Array<any>) => void;
+export declare let error: (...msg: Array<any>) => void;
