@@ -4,7 +4,7 @@
     "array-type": [true, "generic"],
     "ban-types": false,
     "forin": false,
-    "indent": [true, "tabs", 4],
+    "indent": false,
     "max-classes-per-file": false,
     "max-line-length": false,
     "member-access": false,

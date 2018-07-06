@@ -1,19 +1,17 @@
-let global = Function('return this;')();
-
 function noop() {}
 
 export type THandler = (type: string, ...msg: Array<any>) => void;
 
-let defaultHandler: THandler = (type, ...msg) => {
-	let console = global.console;
-
-	(console && console[type] || noop).call(
-		console || null,
-		(type == 'error' ? msg.map((m) => m === Object(m) && m.stack || m) : msg).join(' ')
+const defaultHandler: THandler = (type, ...msg) => {
+	((console as any)[type] || noop).apply(
+		console,
+		type == 'error' ? msg.map((m: any) => (m && typeof m == 'object' && m.stack) || m) : msg
 	);
 };
 
 export class Logger {
+	static $instance: Logger;
+
 	handler: THandler;
 
 	constructor(handler?: THandler) {
@@ -33,8 +31,8 @@ export class Logger {
 	}
 }
 
-export let logger = new Logger();
+export const logger = (Logger.$instance = new Logger());
 
-export let log: (...msg: Array<any>) => void = logger.log.bind(logger);
-export let warn: (...msg: Array<any>) => void = logger.warn.bind(logger);
-export let error: (...msg: Array<any>) => void = logger.error.bind(logger);
+export const log: (...msg: Array<any>) => void = logger.log.bind(logger);
+export const warn: (...msg: Array<any>) => void = logger.warn.bind(logger);
+export const error: (...msg: Array<any>) => void = logger.error.bind(logger);

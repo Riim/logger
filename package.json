@@ -1,6 +1,6 @@
 {
   "name": "@riim/logger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/Riim/logger#readme",
   "devDependencies": {
-    "typescript": "^2.5.2"
+    "typescript": "^2.9.2"
   }
 }
